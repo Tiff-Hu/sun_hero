@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Switches</title>
+    <style>
+        /* Ensure transparent background */
+        html, body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: transparent;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* Toggle switch container */
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        /* The switch itself */
+        .toggle-switch {
+            position: relative;
+            width: 40px;
+            height: 20px;
+            background: #aaa; /* Default gray */
+            border-radius: 10px;
+            transition: background 0.3s ease;
+        }
+
+        /* The circle inside the switch */
+        .toggle-thumb {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 16px;
+            height: 16px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        /* Active (checked) state */
+        .toggle-switch.checked {
+            background: #4CAF50 !important; /* Green when checked */
+        }
+
+        .toggle-switch.checked .toggle-thumb {
+            transform: translateX(20px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="toggle-container" onclick="toggleSwitch(this)">
+            <div class="toggle-switch"></div>
+        </div>
+        <div class="toggle-container" onclick="toggleSwitch(this)">
+            <div class="toggle-switch"></div>
+        </div>
+        <div class="toggle-container" onclick="toggleSwitch(this)">
+            <div class="toggle-switch"></div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSwitch(container) {
+            let switchElement = container.querySelector(".toggle-switch");
+            switchElement.classList.toggle("checked");
+        }
+    </script>
+
+</body>
+</html>
