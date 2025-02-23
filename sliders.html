@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi Draggable Sliders</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #fffae5;
+            padding: 20px;
+        }
+
+        .slider-wrapper {
+            width: 320px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .slider-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .slider-container {
+            width: 100%;
+            height: 10px;
+            background: #d1c4a9;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .slider-thumb {
+            width: 20px;
+            height: 20px;
+            background: orange;
+            border-radius: 50%;
+            position: absolute;
+            top: -5px;
+            cursor: grab;
+        }
+
+        .labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 14px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Slider 1: Predicted Level of Sun-Exposure -->
+    <div class="slider-wrapper">
+        <div class="slider-title">Predicted Level of Sun-Exposure</div>
+        <div class="slider-container" id="slider1">
+            <div class="slider-thumb" id="thumb1"></div>
+        </div>
+        <div class="labels">
+            <span>Mild</span>
+            <span>Moderate</span>
+            <span>High</span>
+        </div>
+    </div>
+
+    <!-- Slider 2: Physical Activity -->
+    <div class="slider-wrapper">
+        <div class="slider-title">Physical Activity</div>
+        <div class="slider-container" id="slider2">
+            <div class="slider-thumb" id="thumb2"></div>
+        </div>
+        <div class="labels">
+            <span>None</span>
+            <span>Mild</span>
+            <span>Moderate</span>
+            <span>High</span>
+        </div>
+    </div>
+
+    <!-- Slider 3: Time Spent in Shade -->
+    <div class="slider-wrapper">
+        <div class="slider-title">% Time Spent in Shade</div>
+        <div class="slider-container" id="slider3">
+            <div class="slider-thumb" id="thumb3"></div>
+        </div>
+        <div class="labels">
+            <span>0%</span>
+            <span>100%</span>
+        </div>
+    </div>
+
+    <!-- Slider 4: Water Activities -->
+    <div class="slider-wrapper">
+        <div class="slider-title">Water Activities?</div>
+        <div class="slider-container" id="slider4">
+            <div class="slider-thumb" id="thumb4"></div>
+        </div>
+        <div class="labels">
+            <span>No</span>
+            <span>Yes</span>
+        </div>
+    </div>
+
+    <script>
+        function makeDraggable(sliderId, thumbId) {
+            const slider = document.getElementById(sliderId);
+            const thumb = document.getElementById(thumbId);
+            let isDragging = false;
+
+            thumb.addEventListener("mousedown", (event) => {
+                isDragging = true;
+                document.addEventListener("mousemove", onMouseMove);
+                document.addEventListener("mouseup", () => {
+                    isDragging = false;
+                    document.removeEventListener("mousemove", onMouseMove);
+                });
+            });
+
+            function onMouseMove(event) {
+                if (!isDragging) return;
+
+                let rect = slider.getBoundingClientRect();
+                let offsetX = event.clientX - rect.left;
+                let minX = 0;
+                let maxX = rect.width - thumb.offsetWidth;
+
+                if (offsetX < minX) offsetX = minX;
+                if (offsetX > maxX) offsetX = maxX;
+
+                thumb.style.left = offsetX + "px";
+            }
+        }
+
+        // Activate all four sliders
+        makeDraggable("slider1", "thumb1");
+        makeDraggable("slider2", "thumb2");
+        makeDraggable("slider3", "thumb3");
+        makeDraggable("slider4", "thumb4");
+    </script>
+
+</body>
+</html>
