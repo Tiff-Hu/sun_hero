@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Refined Toggle Switches</title>
+    <title>Toggle Switches</title>
     <style>
-        /* Transparent background */
+        /* Ensure full transparency in Bravo Studio */
         html, body {
             margin: 0;
             padding: 0;
@@ -13,7 +13,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: transparent;
+            background: rgba(255, 255, 255, 0); /* Fully transparent */
         }
 
         .container {
@@ -86,6 +86,11 @@
             let switchElement = container.querySelector(".toggle-switch");
             switchElement.classList.toggle("checked");
         }
+
+        // Ensure background remains transparent when Bravo loads
+        window.onload = function() {
+            document.body.style.backgroundColor = "rgba(255, 255, 255, 0)";
+        };
     </script>
 
 </body>
