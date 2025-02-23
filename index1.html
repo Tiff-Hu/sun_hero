@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clickable Buttons</title>
+    <title>Single-Selection Buttons</title>
     <style>
         /* Basic reset */
         html, body {
@@ -37,8 +37,15 @@
             transition: background-color 0.3s ease;
         }
 
+        /* Clicked button */
         .button.clicked {
-            background-color: #FB9339 !important; /* Clicked color */
+            background-color: #FB9339 !important; /* Active color */
+        }
+
+        /* Disabled buttons (when one is active) */
+        .button.disabled {
+            pointer-events: none; /* Prevents clicking */
+            opacity: 0.5; /* Slightly faded */
         }
     </style>
 </head>
@@ -54,9 +61,33 @@
     </div>
 
     <script>
+        let activeButton = null;
+
         function toggleButton(button) {
-            // Toggle 'clicked' class to change color
-            button.classList.toggle("clicked");
+            if (activeButton === button) {
+                // Deselect current button
+                button.classList.remove("clicked");
+                document.querySelectorAll(".button").forEach(btn => {
+                    btn.classList.remove("disabled");
+                });
+                activeButton = null;
+            } else {
+                // Deselect previous button
+                if (activeButton) {
+                    activeButton.classList.remove("clicked");
+                }
+
+                // Select new button
+                button.classList.add("clicked");
+                activeButton = button;
+
+                // Disable all other buttons
+                document.querySelectorAll(".button").forEach(btn => {
+                    if (btn !== activeButton) {
+                        btn.classList.add("disabled");
+                    }
+                });
+            }
         }
     </script>
 
