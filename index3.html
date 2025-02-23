@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkbox Toggle</title>
+    <title>Small Checkbox Toggle</title>
     <style>
         /* Centering the checkbox */
         html, body {
@@ -16,14 +16,14 @@
             background: transparent;
         }
 
-        /* Checkbox Container */
+        /* Smaller Checkbox Container */
         .checkbox-container {
-            width: 40px;
-            height: 40px;
+            width: 24px;
+            height: 24px;
             display: flex;
             justify-content: center;
             align-items: center;
-            border-radius: 10px;
+            border-radius: 6px;
             background-color: #ddd; /* Default unchecked color */
             cursor: pointer;
             transition: background-color 0.3s ease;
@@ -32,7 +32,7 @@
         /* Checkmark (Hidden by default) */
         .checkmark {
             display: none;
-            font-size: 24px;
+            font-size: 16px; /* Smaller checkmark */
             color: #ffffff;
         }
 
@@ -48,7 +48,7 @@
 </head>
 <body>
 
-    <!-- Checkbox Element -->
+    <!-- Smaller Checkbox Element -->
     <div class="checkbox-container" onclick="toggleCheckbox(this)">
         <span class="checkmark">✔</span>
     </div>
