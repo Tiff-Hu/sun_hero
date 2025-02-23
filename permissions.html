@@ -52,7 +52,7 @@
             flex-direction: column;
             gap: 20px;
             align-items: center;
-            margin-top: -20px; /* Adjust based on the hero image */
+            margin-top: -20px;
         }
 
         .toggle-container {
@@ -64,6 +64,7 @@
             font-size: 16px;
             color: #222;
             cursor: pointer;
+            pointer-events: auto; /* Ensure touch events work */
         }
 
         /* Toggle switch styling */
@@ -109,19 +110,19 @@
 
         <!-- Toggle List -->
         <div class="toggle-list">
-            <div class="toggle-container" onclick="toggleSwitch(this)">
+            <div class="toggle-container">
                 Turn on Location Services
                 <div class="toggle-switch">
                     <div class="toggle-thumb"></div>
                 </div>
             </div>
-            <div class="toggle-container" onclick="toggleSwitch(this)">
+            <div class="toggle-container">
                 Push Notifications
                 <div class="toggle-switch">
                     <div class="toggle-thumb"></div>
                 </div>
             </div>
-            <div class="toggle-container" onclick="toggleSwitch(this)">
+            <div class="toggle-container">
                 Link to Activity Tracker
                 <div class="toggle-switch">
                     <div class="toggle-thumb"></div>
@@ -135,6 +136,18 @@
             let switchElement = container.querySelector(".toggle-switch");
             switchElement.classList.toggle("checked");
         }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".toggle-container").forEach(container => {
+                container.addEventListener("click", function () {
+                    toggleSwitch(this);
+                });
+
+                container.addEventListener("touchstart", function () {
+                    toggleSwitch(this);
+                });
+            });
+        });
 
         // Ensure background remains transparent when Bravo loads
         window.onload = function() {
