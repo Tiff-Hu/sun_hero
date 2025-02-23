@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permissions Page</title>
+    <style>
+        /* Make the background fully transparent */
+        html, body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0); /* Transparent */
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        /* Title styling */
+        .title {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #444;
+            margin-bottom: 20px;
+        }
+
+        /* Hero image styling */
+        .hero-img {
+            width: 100%;
+            max-width: 250px; /* Adjust as needed */
+            margin: 0 auto 20px;
+        }
+
+        /* Toggle switches list */
+        .toggle-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 300px;
+            font-size: 16px;
+            color: #222;
+            cursor: pointer;
+        }
+
+        /* Toggle switch styling */
+        .toggle-switch {
+            position: relative;
+            width: 40px;
+            height: 20px;
+            background: #aaa; /* Default gray */
+            border-radius: 10px;
+            transition: background 0.3s ease;
+        }
+
+        /* The moving dot (thumb) */
+        .toggle-thumb {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 16px;
+            height: 16px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        /* Active (checked) state */
+        .toggle-switch.checked {
+            background: #4CAF50 !important; /* Green when checked */
+        }
+
+        .toggle-switch.checked .toggle-thumb {
+            transform: translateX(20px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="title">SUN HERO</div>
+        <div class="subtitle">Ready, Set, Go!<br>You're ready to get started</div>
+
+        <!-- Hero Image -->
+        <img class="hero-img" src="https://raw.githubusercontent.com/Tiff-Hu/sun_hero/main/mhero2.png" alt="Sun Hero">
+
+        <!-- Toggle List -->
+        <div class="toggle-list">
+            <div class="toggle-container" onclick="toggleSwitch(this)">
+                Turn on Location Services
+                <div class="toggle-switch">
+                    <div class="toggle-thumb"></div>
+                </div>
+            </div>
+            <div class="toggle-container" onclick="toggleSwitch(this)">
+                Push Notifications
+                <div class="toggle-switch">
+                    <div class="toggle-thumb"></div>
+                </div>
+            </div>
+            <div class="toggle-container" onclick="toggleSwitch(this)">
+                Link to Activity Tracker
+                <div class="toggle-switch">
+                    <div class="toggle-thumb"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSwitch(container) {
+            let switchElement = container.querySelector(".toggle-switch");
+            switchElement.classList.toggle("checked");
+        }
+
+        // Ensure background remains transparent when Bravo loads
+        window.onload = function() {
+            document.body.style.backgroundColor = "rgba(255, 255, 255, 0)";
+        };
+    </script>
+
+</body>
+</html>
