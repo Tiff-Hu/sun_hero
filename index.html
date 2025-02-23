@@ -21,7 +21,7 @@
             justify-content: flex-start;
             height: 100vh;
             max-height: 100vh;
-            overflow-y: scroll; /* Force vertical scrolling */
+            overflow-y: auto; /* Force vertical scrolling */
             -webkit-overflow-scrolling: touch; /* Enable smooth touch scrolling */
             padding: 20px;
             position: relative;
@@ -49,6 +49,7 @@
             position: absolute;
             top: -5px;
             cursor: grab;
+            touch-action: none; /* Prevent touch interference */
         }
 
         .labels {
@@ -59,7 +60,7 @@
             color: #333;
         }
 
-        /* Temporary large div to force scrolling */
+        /* Temporary large div to ensure scrolling */
         .spacer {
             height: 500px;
         }
@@ -67,7 +68,7 @@
 </head>
 <body>
     <div class="container">
-        <!-- Slider 1: Predicted Level of Sun-Exposure -->
+        <!-- Slider 1 -->
         <div class="slider-wrapper">
             <div class="slider-title">Predicted Level of Sun-Exposure</div>
             <div class="slider-container" id="slider1">
@@ -80,7 +81,7 @@
             </div>
         </div>
 
-        <!-- Slider 2: Physical Activity -->
+        <!-- Slider 2 -->
         <div class="slider-wrapper">
             <div class="slider-title">Physical Activity</div>
             <div class="slider-container" id="slider2">
@@ -94,7 +95,7 @@
             </div>
         </div>
 
-        <!-- Slider 3: Time Spent in Shade -->
+        <!-- Slider 3 -->
         <div class="slider-wrapper">
             <div class="slider-title">% Time Spent in Shade</div>
             <div class="slider-container" id="slider3">
@@ -106,7 +107,7 @@
             </div>
         </div>
 
-        <!-- Slider 4: Water Activities -->
+        <!-- Slider 4 -->
         <div class="slider-wrapper">
             <div class="slider-title">Water Activities?</div>
             <div class="slider-container" id="slider4">
@@ -128,20 +129,24 @@
             const thumb = document.getElementById(thumbId);
             let isDragging = false;
 
-            thumb.addEventListener("mousedown", (event) => {
+            // Function to start dragging
+            function startDrag(event) {
                 isDragging = true;
-                document.addEventListener("mousemove", onMouseMove);
-                document.addEventListener("mouseup", () => {
-                    isDragging = false;
-                    document.removeEventListener("mousemove", onMouseMove);
-                });
-            });
+                event.preventDefault();
 
+                document.addEventListener("mousemove", onMouseMove);
+                document.addEventListener("mouseup", stopDrag);
+                document.addEventListener("touchmove", onMouseMove);
+                document.addEventListener("touchend", stopDrag);
+            }
+
+            // Function to move the slider thumb
             function onMouseMove(event) {
                 if (!isDragging) return;
 
+                let clientX = event.touches ? event.touches[0].clientX : event.clientX;
                 let rect = slider.getBoundingClientRect();
-                let offsetX = event.clientX - rect.left;
+                let offsetX = clientX - rect.left;
                 let minX = 0;
                 let maxX = rect.width - thumb.offsetWidth;
 
@@ -150,8 +155,22 @@
 
                 thumb.style.left = offsetX + "px";
             }
+
+            // Function to stop dragging
+            function stopDrag() {
+                isDragging = false;
+                document.removeEventListener("mousemove", onMouseMove);
+                document.removeEventListener("mouseup", stopDrag);
+                document.removeEventListener("touchmove", onMouseMove);
+                document.removeEventListener("touchend", stopDrag);
+            }
+
+            // Attach event listeners
+            thumb.addEventListener("mousedown", startDrag);
+            thumb.addEventListener("touchstart", startDrag);
         }
 
+        // Activate all four sliders
         makeDraggable("slider1", "thumb1");
         makeDraggable("slider2", "thumb2");
         makeDraggable("slider3", "thumb3");
