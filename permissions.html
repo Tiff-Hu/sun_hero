@@ -16,32 +16,34 @@
             height: 100vh;
             background: rgba(255, 255, 255, 0); /* Transparent */
             font-family: Arial, sans-serif;
+            position: relative;
         }
 
         .container {
             text-align: center;
             width: 100%;
             max-width: 400px;
+            position: relative;
         }
 
-        /* Title styling */
-        .title {
-            font-size: 32px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
+        /* Subtitle styling positioned on top of the hero */
         .subtitle {
             font-size: 18px;
-            color: #444;
-            margin-bottom: 20px;
+            font-weight: bold;
+            color: #222;
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            width: 100%;
         }
 
         /* Hero image styling */
         .hero-img {
             width: 100%;
-            max-width: 250px; /* Adjust as needed */
-            margin: 0 auto 20px;
+            max-width: 250px;
+            margin-top: 50px;
         }
 
         /* Toggle switches list */
@@ -50,6 +52,7 @@
             flex-direction: column;
             gap: 20px;
             align-items: center;
+            margin-top: -20px; /* Adjust based on the hero image */
         }
 
         .toggle-container {
@@ -98,7 +101,7 @@
 <body>
 
     <div class="container">
-        <div class="title">SUN HERO</div>
+        <!-- Subtitle positioned over the hero image -->
         <div class="subtitle">Ready, Set, Go!<br>You're ready to get started</div>
 
         <!-- Hero Image -->
