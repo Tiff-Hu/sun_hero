@@ -3,14 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multi Draggable Sliders</title>
+    <title>Draggable Sliders</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden; /* Prevent double scrolling */
+        }
+
+        .container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: #fffae5;
+            justify-content: flex-start;
+            height: 100vh;
+            overflow-y: auto; /* Enable scrolling */
+            -webkit-overflow-scrolling: touch;
             padding: 20px;
         }
 
@@ -18,13 +27,6 @@
             width: 320px;
             margin-bottom: 30px;
             text-align: center;
-        }
-
-        .slider-title {
-            font-size: 16px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #333;
         }
 
         .slider-container {
@@ -55,55 +57,56 @@
     </style>
 </head>
 <body>
+    <div class="container">
+        <!-- Slider 1 -->
+        <div class="slider-wrapper">
+            <div class="slider-title">Predicted Level of Sun-Exposure</div>
+            <div class="slider-container" id="slider1">
+                <div class="slider-thumb" id="thumb1"></div>
+            </div>
+            <div class="labels">
+                <span>Mild</span>
+                <span>Moderate</span>
+                <span>High</span>
+            </div>
+        </div>
 
-    <!-- Slider 1: Predicted Level of Sun-Exposure -->
-    <div class="slider-wrapper">
-        <div class="slider-title">Predicted Level of Sun-Exposure</div>
-        <div class="slider-container" id="slider1">
-            <div class="slider-thumb" id="thumb1"></div>
+        <!-- Slider 2 -->
+        <div class="slider-wrapper">
+            <div class="slider-title">Physical Activity</div>
+            <div class="slider-container" id="slider2">
+                <div class="slider-thumb" id="thumb2"></div>
+            </div>
+            <div class="labels">
+                <span>None</span>
+                <span>Mild</span>
+                <span>Moderate</span>
+                <span>High</span>
+            </div>
         </div>
-        <div class="labels">
-            <span>Mild</span>
-            <span>Moderate</span>
-            <span>High</span>
-        </div>
-    </div>
 
-    <!-- Slider 2: Physical Activity -->
-    <div class="slider-wrapper">
-        <div class="slider-title">Physical Activity</div>
-        <div class="slider-container" id="slider2">
-            <div class="slider-thumb" id="thumb2"></div>
+        <!-- Slider 3 -->
+        <div class="slider-wrapper">
+            <div class="slider-title">% Time Spent in Shade</div>
+            <div class="slider-container" id="slider3">
+                <div class="slider-thumb" id="thumb3"></div>
+            </div>
+            <div class="labels">
+                <span>0%</span>
+                <span>100%</span>
+            </div>
         </div>
-        <div class="labels">
-            <span>None</span>
-            <span>Mild</span>
-            <span>Moderate</span>
-            <span>High</span>
-        </div>
-    </div>
 
-    <!-- Slider 3: Time Spent in Shade -->
-    <div class="slider-wrapper">
-        <div class="slider-title">% Time Spent in Shade</div>
-        <div class="slider-container" id="slider3">
-            <div class="slider-thumb" id="thumb3"></div>
-        </div>
-        <div class="labels">
-            <span>0%</span>
-            <span>100%</span>
-        </div>
-    </div>
-
-    <!-- Slider 4: Water Activities -->
-    <div class="slider-wrapper">
-        <div class="slider-title">Water Activities?</div>
-        <div class="slider-container" id="slider4">
-            <div class="slider-thumb" id="thumb4"></div>
-        </div>
-        <div class="labels">
-            <span>No</span>
-            <span>Yes</span>
+        <!-- Slider 4 -->
+        <div class="slider-wrapper">
+            <div class="slider-title">Water Activities?</div>
+            <div class="slider-container" id="slider4">
+                <div class="slider-thumb" id="thumb4"></div>
+            </div>
+            <div class="labels">
+                <span>No</span>
+                <span>Yes</span>
+            </div>
         </div>
     </div>
 
@@ -137,12 +140,10 @@
             }
         }
 
-        // Activate all four sliders
         makeDraggable("slider1", "thumb1");
         makeDraggable("slider2", "thumb2");
         makeDraggable("slider3", "thumb3");
         makeDraggable("slider4", "thumb4");
     </script>
-
 </body>
 </html>
