@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toggle Switches</title>
+    <title>Refined Toggle Switches</title>
     <style>
-        /* Ensure transparent background */
+        /* Transparent background */
         html, body {
             margin: 0;
             padding: 0;
@@ -29,7 +29,7 @@
             cursor: pointer;
         }
 
-        /* The switch itself */
+        /* The switch background */
         .toggle-switch {
             position: relative;
             width: 40px;
@@ -39,7 +39,7 @@
             transition: background 0.3s ease;
         }
 
-        /* The circle inside the switch */
+        /* The moving dot (thumb) */
         .toggle-thumb {
             position: absolute;
             top: 2px;
@@ -65,13 +65,19 @@
 
     <div class="container">
         <div class="toggle-container" onclick="toggleSwitch(this)">
-            <div class="toggle-switch"></div>
+            <div class="toggle-switch">
+                <div class="toggle-thumb"></div>
+            </div>
         </div>
         <div class="toggle-container" onclick="toggleSwitch(this)">
-            <div class="toggle-switch"></div>
+            <div class="toggle-switch">
+                <div class="toggle-thumb"></div>
+            </div>
         </div>
         <div class="toggle-container" onclick="toggleSwitch(this)">
-            <div class="toggle-switch"></div>
+            <div class="toggle-switch">
+                <div class="toggle-thumb"></div>
+            </div>
         </div>
     </div>
 
